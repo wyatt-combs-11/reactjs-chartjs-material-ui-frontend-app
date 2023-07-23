@@ -2,7 +2,7 @@ import React from 'react'
 import { Chart as ChartJS, BarElement, LinearScale, Title, Tooltip, CategoryScale } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 
-const BarChart = ({seriesData, seriesChoice}) => {
+const BarChart = (props) => {
     ChartJS.register(
         CategoryScale,
         LinearScale,
@@ -10,13 +10,8 @@ const BarChart = ({seriesData, seriesChoice}) => {
         Title,
         Tooltip
     );
-
-    // console.log(seriesData)
-    console.log((seriesChoice['choice']['name']))
-    const seriesName = seriesChoice['choice']['name']
-    console.log(seriesName)
-    seriesData = seriesData['data'][seriesName]
-    console.log(seriesData)
+    const seriesName = props.seriesChoice
+    const seriesData = props.seriesData[seriesName]
       
     const options = {
         responsive: true,
@@ -26,7 +21,7 @@ const BarChart = ({seriesData, seriesChoice}) => {
             // },
             title: {
                 display: true,
-                text: seriesName,
+                text: (seriesName + " Series"),
             },
         },
     };
@@ -34,11 +29,18 @@ const BarChart = ({seriesData, seriesChoice}) => {
     const labels = seriesData['XData'];
     
     const data = {
-        labels,
+       labels,
         datasets: [
             {
                 data: seriesData['YData'],
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                  ],
             }
         ],
     };
@@ -47,7 +49,6 @@ const BarChart = ({seriesData, seriesChoice}) => {
                 <Bar
                     data={data}
                     options={options}
-                    width={400}
                 />
             </div>
 
