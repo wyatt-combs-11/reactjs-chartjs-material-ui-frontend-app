@@ -1,5 +1,6 @@
+import '../App.css';
 import React from 'react'
-import { Chart as ChartJS, LinearScale, Title, Tooltip, CategoryScale, ArcElement } from 'chart.js'
+import { Chart as ChartJS, Title, Tooltip, CategoryScale, ArcElement, Legend } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
 
 const PieChart = (props) => {
@@ -7,21 +8,24 @@ const PieChart = (props) => {
         CategoryScale,
         ArcElement,
         Title,
-        Tooltip
+        Tooltip,
+        Legend
     );
     const seriesName = props.seriesChoice
     const seriesData = props.seriesData[seriesName]
       
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: (seriesName + " Series"),
-            },
+            legend: false,
+            title: false,
+        },
+        elements: {
+            arc: {
+                borderWidth: 2, // <-- Set this to derired value
+                borderColor:'#333'
+            }
         },
     };
     
@@ -33,18 +37,20 @@ const PieChart = (props) => {
             {
                 data: seriesData['YData'],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)'
                   ],
             }
         ],
     };
-
-    return <div>
+    if (props.index !== props.chartIndex) {
+        return
+    }
+    return <div className='Resizable Circular Pie'>
                 <Pie
                     data={data}
                     options={options}

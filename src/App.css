@@ -2,14 +2,13 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Pie {
+  border-color: rgb(255, 255, 255);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .Pie {
+    animation: App-logo-spin infinite 10s linear;
   }
 }
 
@@ -35,4 +34,78 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@media (max-width: 700px) {
+  .Resizable {
+    height: 40vw;
+    width: 40vw;
+  }
+  .Circular {
+    height: 30vw;
+    width: 35vw;
+  }
+}
+
+@media (min-width: 800px) {
+  .Resizable {
+    height: 300px;
+    width: 300px;
+    margin: 2vw;
+  }
+  .Circular {
+    height: 250px;
+    width: 250px;
+  }
+}
+
+.Radio-Group {
+  position: fixed;
+  top: 0;
+  margin: 5px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 99, 132, 0.8);
+  background-color: rgba(211, 211, 211, 0.141);
+  border-radius: 10px;
+}
+
+.Radio-Label {
+  font-size: 2vmin;
+  color: rgba(255, 99, 132, 0.8);
+}
+
+.Sum-Group {
+  position: fixed;
+  bottom: 0;
+  height: 10vmin;
+  margin: 3vmin;
+  padding: 2vmin;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(211, 211, 211, 0.141);
+  border-radius: 10px;
+}
+
+.Sum-Label {
+  margin: 1.5vmin;
+  color: rgba(255, 99, 132, 0.8);
+}
+
+.Radio-Control-Label {
+  width: auto;
+}
+
+.Chart-Count {
+  display: flex;
+  padding: 2vmin;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 99, 132, 0.8);
 }

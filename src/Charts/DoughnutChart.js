@@ -1,13 +1,12 @@
 import '../App.css';
 import React from 'react'
-import { Chart as ChartJS, BarElement, LinearScale, Title, Tooltip, CategoryScale, Legend } from 'chart.js'
-import { Bar } from 'react-chartjs-2'
+import { Chart as ChartJS, Title, Tooltip, CategoryScale, ArcElement, Legend } from 'chart.js'
+import { Doughnut } from 'react-chartjs-2'
 
-const BarChart = (props) => {
+const DoughnutChart = (props) => {
     ChartJS.register(
         CategoryScale,
-        LinearScale,
-        BarElement,
+        ArcElement,
         Title,
         Tooltip,
         Legend
@@ -21,6 +20,12 @@ const BarChart = (props) => {
         plugins: {
             legend: false,
             title: false,
+        },
+        elements: {
+            arc: {
+                borderWidth: 2, // <-- Set this to derired value
+                borderColor:'#333'
+            }
         },
     };
     
@@ -42,12 +47,11 @@ const BarChart = (props) => {
             }
         ],
     };
-
     if (props.index !== props.chartIndex) {
         return
     }
-    return <div className='Resizable'>
-                <Bar
+    return <div className='Resizable Circular'>
+                <Doughnut
                     data={data}
                     options={options}
                 />
@@ -55,4 +59,4 @@ const BarChart = (props) => {
 
 }
 
-export default BarChart
+export default DoughnutChart
