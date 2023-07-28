@@ -36,27 +36,17 @@
   }
 }
 
-@media (max-width: 700px) {
-  .Resizable {
-    height: 40vw;
-    width: 40vw;
-  }
-  .Circular {
-    height: 30vw;
-    width: 35vw;
-  }
-}
-
-@media (min-width: 800px) {
-  .Resizable {
-    height: 300px;
-    width: 300px;
-    margin: 2vw;
-  }
-  .Circular {
-    height: 250px;
-    width: 250px;
-  }
+.Legend {
+  display: flex;
+  margin: 5px;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(211, 211, 211, 0.141);
+  border-radius: 10px;
+  height: 30vh;
+  margin-bottom: 10vh;
 }
 
 .Radio-Group {
@@ -108,4 +98,33 @@
   align-items: center;
   justify-content: center;
   color: rgba(255, 99, 132, 0.8);
+}
+
+.Legend-Label {
+  font-size: 5vmin;
+  width: 20vw;
+}
+
+@media (max-width: 800px) {
+  .Resizable {
+    height: 40vw;
+    width: 40vw;
+  }
+  .Legend {
+    width: 40vw;
+  }
+  .Legend-Label {
+    width: 40vw;
+  }
+}
+
+@media (min-width: 800px) {
+  .Resizable {
+    height: 40vh;
+    width: 300px;
+    margin: 2vw;
+  }
+  .Legend {
+    width: 30vw;
+  }
 }

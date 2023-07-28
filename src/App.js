@@ -9,6 +9,8 @@ import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import CircleIcon from '@mui/icons-material/Circle';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
+import Legend from './Helper/Legend';
+import ColorGenerator from './Helper/ColorGenerator';
 
 function sumData(data) {
   let sumMembers = 0
@@ -25,6 +27,7 @@ function App(props) {
   const [response, setResponse] = useState(false)
   const [choice, setChoice] = useState({name:'Levels'})
   const [index, setIndex] = useState(0)
+  const [colors] = useState(ColorGenerator.returnColors())
 
   // API Call
   useEffect(() => {
@@ -36,8 +39,8 @@ function App(props) {
 
   // Button, Radio Handlers
   const updateChoice = (event) => { setChoice({name: event.target.value})};
-  const increaseIndex = (event) => { setIndex((index + 1) % 3)}
-  const decreaseIndex = (event) => { setIndex(((index - 1) + 3) % 3)}
+  const increaseIndex = () => { setIndex((index + 1) % 3)}
+  const decreaseIndex = () => { setIndex(((index - 1) + 3) % 3)}
 
   if (isLoading) {
     return (
@@ -76,35 +79,46 @@ function App(props) {
         <FormLabel className='Sum-Label' style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '5vmin'}}>
           {choice.name + " series"}
         </FormLabel>
-        <Box display='flex' flexWrap={'wrap'} alignItems='center' justifyContent='center' >
-          <IconButton value={-1} name='previous' style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '4vw'}} onClick={decreaseIndex} ><ArrowCircleLeftIcon fontSize='5vw' /></IconButton>
-          <BarChart display={false}
-            seriesData={response}
-            seriesChoice={choice.name}
-            index={index}
-            chartIndex={0}
+        <Box display='flex' flexWrap='wrap' alignItems='center' justifyContent='center' height='50vh'>
+          <Legend className='Legend'
+            seriesData={response[choice.name].XData}
+            colors={colors}
           />
-          <PieChart
-            seriesData={response}
-            seriesChoice={choice.name}
-            index={index}
-            chartIndex={1}
-          />
-          <DoughnutChart
-            seriesData={response}
-            seriesChoice={choice.name}
-            index={index}
-            chartIndex={2}
-          />
-          <IconButton style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '4vw'}} onClick={increaseIndex}><ArrowCircleRightIcon fontSize='5vw' /></IconButton>
-        </Box>
-        <Box row className='Chart-Count' >
-          <div hidden={index !== 0}><CircleIcon /></div>
-          <div hidden={index === 0}><CircleOutlinedIcon /></div>
-          <div hidden={index !== 1}><CircleIcon /></div>
-          <div hidden={index === 1}><CircleOutlinedIcon /></div>
-          <div hidden={index !== 2}><CircleIcon /></div>
-          <div hidden={index === 2}><CircleOutlinedIcon /></div>
+          <Box>
+            <Box display='flex' flexWrap='wrap' alignItems='center' justifyContent='center'>
+              <IconButton value={-1} name='previous' style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '4vw'}} onClick={decreaseIndex} ><ArrowCircleLeftIcon fontSize='5vw' /></IconButton>
+              <BarChart display={false}
+                seriesData={response}
+                seriesChoice={choice.name}
+                index={index}
+                chartIndex={0}
+                colors={colors}
+              />
+              <PieChart
+                seriesData={response}
+                seriesChoice={choice.name}
+                index={index}
+                chartIndex={1}
+                colors={colors}
+              />
+              <DoughnutChart
+                seriesData={response}
+                seriesChoice={choice.name}
+                index={index}
+                chartIndex={2}
+                colors={colors}
+              />
+              <IconButton style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '4vw'}} onClick={increaseIndex}><ArrowCircleRightIcon fontSize='5vw' /></IconButton>
+            </Box>
+            <Box className='Chart-Count'>
+              <div hidden={index !== 0}><CircleIcon fontSize='2vw'/></div>
+              <div hidden={index === 0}><CircleOutlinedIcon fontSize='2vw'/></div>
+              <div hidden={index !== 1}><CircleIcon fontSize='2vw'/></div>
+              <div hidden={index === 1}><CircleOutlinedIcon fontSize='2vw'/></div>
+              <div hidden={index !== 2}><CircleIcon fontSize='2vw'/></div>
+              <div hidden={index === 2}><CircleOutlinedIcon fontSize='2vw'/></div>
+            </Box>
+          </Box>
         </Box>
         <Box className='Sum-Group'>
           <FormLabel className='Sum-Label' style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '3vmin'}}>Member Count: {sumMembers}</FormLabel>
