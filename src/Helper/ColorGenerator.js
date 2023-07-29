@@ -1,14 +1,24 @@
+
 export default class ColorGenerator {
     static returnColors() {
-        const letters = '0123456789ABCDEF';
+        const blue = [22, 91, 170]
+        const purple = [161, 85, 185]
+        const lightGreen = [144, 238, 144]
         const colors = []
         for (let i = 0; i < 30; i++) {
-            let color = '#';
-            for (let j = 0; j < 6; j++) {
-                color += letters[Math.floor(Math.random() * 16)];
+            if (Math.random() > 0.5) {
+                colors.push(ColorGenerator.mixColors(blue, purple, Math.random()));
+            } else {
+                colors.push(ColorGenerator.mixColors(blue, lightGreen, Math.random()));
             }
-            colors.push(color + "80");
         }
         return colors;
+    }
+
+    static mixColors(color1, color2, alpha) {
+        const r = color1[0] * alpha + color2[0] * (1 - alpha);
+        const g = color1[1] * alpha + color2[1] * (1 - alpha);
+        const b = color1[2] * alpha + color2[2] * (1 - alpha);
+        return 'rgba(' + r + ',' + g + ',' + b + ',' + 0.8 + ')'
     }
 }

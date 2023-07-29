@@ -23,8 +23,7 @@ const DoughnutChart = (props) => {
         },
         elements: {
             arc: {
-                borderWidth: 2, // <-- Set this to derired value
-                borderColor:'#333'
+                borderWidth: 0,
             }
         },
     };

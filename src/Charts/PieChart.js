@@ -23,8 +23,7 @@ const PieChart = (props) => {
         },
         elements: {
             arc: {
-                borderWidth: 2, // <-- Set this to derired value
-                borderColor:'#333'
+                borderWidth: 0,
             }
         },
     };
@@ -43,7 +42,7 @@ const PieChart = (props) => {
     if (props.index !== props.chartIndex) {
         return
     }
-    return <div className='Resizable Pie'>
+    return <div className='Resizable'>
                 <Pie
                     data={data}
                     options={options}

@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-size: cover;
+  overflow: auto;
 }
 
 .Pie {
@@ -13,8 +15,9 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background: linear-gradient(#f8f0e5,#F6F6F8);
   min-height: 100vh;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,38 +41,34 @@
 
 .Legend {
   display: flex;
-  margin: 5px;
+  padding: 2vmin;
   flex-wrap: wrap;
-  overflow-y: scroll;
   align-items: center;
   justify-content: center;
-  background-color: rgba(211, 211, 211, 0.141);
+  background-color: #FA255E30;
+  color: #000000C0;
   border-radius: 10px;
-  height: 30vh;
-  margin-bottom: 10vh;
 }
 
-.Radio-Group {
-  position: fixed;
+.Datasets-Group {
   top: 0;
-  margin: 5px;
+  margin: 3vmin;
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 99, 132, 0.8);
-  background-color: rgba(211, 211, 211, 0.141);
+  background-color: #FA255E30;
   border-radius: 10px;
 }
 
-.Radio-Label {
+.Dataset-Label {
   font-size: 2vmin;
-  color: rgba(255, 99, 132, 0.8);
+  color: #000000C0;
+  font-weight: bold;
 }
 
 .Sum-Group {
-  position: fixed;
   bottom: 0;
   height: 10vmin;
   margin: 3vmin;
@@ -78,13 +77,19 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  background-color: rgba(211, 211, 211, 0.141);
+  background-color: #FA255E30;
   border-radius: 10px;
 }
 
 .Sum-Label {
   margin: 1.5vmin;
-  color: rgba(255, 99, 132, 0.8);
+  color: #000000C0;
+}
+
+.Series-Label {
+  color: #000000C0;
+  background-color: #FA255E30;
+  border-radius: 20px;
 }
 
 .Radio-Control-Label {
@@ -100,11 +105,6 @@
   color: rgba(255, 99, 132, 0.8);
 }
 
-.Legend-Label {
-  font-size: 5vmin;
-  width: 20vw;
-}
-
 @media (max-width: 800px) {
   .Resizable {
     height: 40vw;
@@ -114,6 +114,7 @@
     width: 40vw;
   }
   .Legend-Label {
+    font-size: 2.5vmin;
     width: 40vw;
   }
 }
@@ -126,5 +127,9 @@
   }
   .Legend {
     width: 30vw;
+  }
+  .Legend-Label {
+    font-size: 20px;
+    width: 20vw;
   }
 }

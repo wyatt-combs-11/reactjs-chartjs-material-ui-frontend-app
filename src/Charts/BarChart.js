@@ -1,6 +1,6 @@
 import '../App.css';
 import React from 'react'
-import { Chart as ChartJS, BarElement, LinearScale, Title, Tooltip, CategoryScale, Legend } from 'chart.js'
+import { Chart as ChartJS, BarElement, LinearScale, Title, Tooltip, CategoryScale } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 
 const BarChart = (props) => {
@@ -9,8 +9,7 @@ const BarChart = (props) => {
         LinearScale,
         BarElement,
         Title,
-        Tooltip,
-        Legend
+        Tooltip
     );
     const seriesName = props.seriesChoice
     const seriesData = props.seriesData[seriesName]
@@ -21,6 +20,13 @@ const BarChart = (props) => {
         plugins: {
             legend: false,
             title: false,
+        },
+        scales: {
+            x: {
+                ticks: {
+                  display: false,
+                },
+            },
         },
     };
     

@@ -49,7 +49,6 @@ function App(props) {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "100vh",
       }}>Loading the data {console.log("loading state")}</div>
     );
   }
@@ -57,18 +56,18 @@ function App(props) {
   const [sumMembers, sumProducts] = sumData(response)
 
   return (
-    <div className="App">
+    <div className="App" >
       <header className="App-header" display='flex'>
-        <RadioGroup row onChange={updateChoice} value={choice.name} className='Radio-Group' >
+        <RadioGroup row onChange={updateChoice} value={choice.name} className='Datasets-Group' >
           {
             Object.keys(response).map(newChoice =>
               <FormControlLabel className='Radio-Control-Label'
                 key={newChoice}
                 labelPlacement='top'
                 value={newChoice}
-                control={<Radio style={{color: 'rgba(255, 99, 132, 0.8)'}} />}
+                control={<Radio style={{color: '#000000A0'}} />}
                 label={
-                  <Box component="div" className='Radio-Label'>
+                  <Box component="div" className='Dataset-Label'>
                       {newChoice}
                     </Box>
                 }
@@ -76,10 +75,10 @@ function App(props) {
             )
           }
         </RadioGroup>
-        <FormLabel className='Sum-Label' style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '5vmin'}}>
+        <FormLabel className='Series-Label' style={{ fontSize: '5vmin', padding: '0.5vmin 2vmin 0.5vmin 2vmin', margin: '5vmin'}}>
           {choice.name + " series"}
         </FormLabel>
-        <Box display='flex' flexWrap='wrap' alignItems='center' justifyContent='center' height='50vh'>
+        <Box display='flex' flexWrap='wrap' alignItems='center' justifyContent='center' height='auto'>
           <Legend className='Legend'
             seriesData={response[choice.name].XData}
             colors={colors}
@@ -121,8 +120,8 @@ function App(props) {
           </Box>
         </Box>
         <Box className='Sum-Group'>
-          <FormLabel className='Sum-Label' style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '3vmin'}}>Member Count: {sumMembers}</FormLabel>
-          <FormLabel className='Sum-Label' style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '3vmin'}}>Product Count: {sumProducts}</FormLabel>
+          <FormLabel className='Sum-Label' style={{color: '#000000A0', fontSize: '3vmin', fontWeight: 'bold'}}>Member Count: {sumMembers}</FormLabel>
+          <FormLabel className='Sum-Label' style={{color: '#000000A0', fontSize: '3vmin', fontWeight: 'bold'}}>Product Count: {sumProducts}</FormLabel>
         </Box>
         
       </header>
