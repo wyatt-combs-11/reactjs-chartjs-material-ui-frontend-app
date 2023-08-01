@@ -53,7 +53,21 @@ function App(props) {
     );
   }
 
+  // Sort current data by YValue and push in tuples
+  const seriesData = response[choice.name]
+  const xData = seriesData.XData
+  const yData = seriesData.YData
+  const series = []
+  for (let i = 0; i < xData.length; i++) {
+      series.push([xData[i], yData[i], colors[i]])
+  }
+  series.sort(function(a, b) { return b[1] - a[1]; })
+  const maxValue = series[0][1]
+
+  // Make three equal length arrays (or close to) for three column legend
   const [sumMembers, sumProducts] = sumData(response)
+  const size = Math.ceil(series.length / 3);
+  const legendData = Array.from({ length: 3 }, (v, i) => series.slice(i * size, i * size + size))
 
   return (
     <div className="App" >
@@ -65,7 +79,7 @@ function App(props) {
                 key={newChoice}
                 labelPlacement='top'
                 value={newChoice}
-                control={<Radio style={{color: '#000000A0'}} />}
+                control={<Radio style={{color: '#FFFFFF'}} />}
                 label={
                   <Box component="div" className='Dataset-Label'>
                       {newChoice}
@@ -75,15 +89,11 @@ function App(props) {
             )
           }
         </RadioGroup>
-        <FormLabel className='Series-Label' style={{ fontSize: '5vmin', padding: '0.5vmin 2vmin 0.5vmin 2vmin', margin: '5vmin'}}>
+        <FormLabel className='Series-Label' style={{ fontSize: '5vmin', padding: '1vmin 4vmin 1vmin 4vmin', margin: '3vmin', color: '#FFFFFF'}}>
           {choice.name + " series"}
         </FormLabel>
         <Box display='flex' flexWrap='wrap' alignItems='center' justifyContent='center' height='auto'>
-          <Legend className='Legend'
-            seriesData={response[choice.name].XData}
-            colors={colors}
-          />
-          <Box>
+          <Box className='Chart-Group'>
             <Box display='flex' flexWrap='wrap' alignItems='center' justifyContent='center'>
               <IconButton value={-1} name='previous' style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '4vw'}} onClick={decreaseIndex} ><ArrowCircleLeftIcon fontSize='5vw' /></IconButton>
               <BarChart display={false}
@@ -119,9 +129,18 @@ function App(props) {
             </Box>
           </Box>
         </Box>
+        <Box className='Legend-Box' display='flex' flexWrap='wrap' alignItems='center' justifyContent='center' margin='3vmin'>
+          {legendData.map(set =>
+            <Legend className='Legend'
+              key={set}
+              legendData={set}
+              maxValue={maxValue}
+            />
+          )}
+        </Box>
         <Box className='Sum-Group'>
-          <FormLabel className='Sum-Label' style={{color: '#000000A0', fontSize: '3vmin', fontWeight: 'bold'}}>Member Count: {sumMembers}</FormLabel>
-          <FormLabel className='Sum-Label' style={{color: '#000000A0', fontSize: '3vmin', fontWeight: 'bold'}}>Product Count: {sumProducts}</FormLabel>
+          <FormLabel className='Sum-Label' style={{color: '#FFFFFF', fontSize: '3vmin', fontWeight: 'bold'}}>Member Count: {sumMembers}</FormLabel>
+          <FormLabel className='Sum-Label' style={{color: '#FFFFFF', fontSize: '3vmin', fontWeight: 'bold'}}>Product Count: {sumProducts}</FormLabel>
         </Box>
         
       </header>

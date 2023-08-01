@@ -27,6 +27,11 @@ const BarChart = (props) => {
                   display: false,
                 },
             },
+            y: {
+                ticks: {
+                    color: '#FFFFFF',
+                },
+            },
         },
     };
     
