@@ -49,11 +49,12 @@
   background-color: var(--secondary);
   border-radius: 10px;
   padding: 2vmin;
+  margin: 2vmin;
 }
 
 .Legend-Box {
   background-color: var(--secondary);
-  padding: 2vmin;
+  padding: 2vmin 0vmin 2vmin 0vmin;
   border-radius: 10px;
 }
 
@@ -118,7 +119,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 99, 132, 0.8);
+  color: #FFFFFF80;
 }
 
 @media (max-width: 800px) {
@@ -130,8 +131,7 @@
     width: 40vw;
   }
   .Legend-Label {
-    font-size: 2.5vmin;
-    width: 40vw;
+    font-size: 2vmin;
   }
 }
 
@@ -145,7 +145,6 @@
     width: 30vw;
   }
   .Legend-Label {
-    font-size: 20px;
-    width: 40vw;
+    font-size: 16px;
   }
 }

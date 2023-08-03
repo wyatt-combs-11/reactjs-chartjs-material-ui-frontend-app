@@ -68,34 +68,37 @@ function App(props) {
   const [sumMembers, sumProducts] = sumData(response)
   const size = Math.ceil(series.length / 3);
   const legendData = Array.from({ length: 3 }, (v, i) => series.slice(i * size, i * size + size))
+  // const legendData = series.slice(0, 10)
 
   return (
     <div className="App" >
       <header className="App-header" display='flex'>
-        <RadioGroup row onChange={updateChoice} value={choice.name} className='Datasets-Group' >
-          {
-            Object.keys(response).map(newChoice =>
-              <FormControlLabel className='Radio-Control-Label'
-                key={newChoice}
-                labelPlacement='top'
-                value={newChoice}
-                control={<Radio style={{color: '#FFFFFF'}} />}
-                label={
-                  <Box component="div" className='Dataset-Label'>
-                      {newChoice}
-                    </Box>
-                }
-              />
-            )
-          }
-        </RadioGroup>
-        <FormLabel className='Series-Label' style={{ fontSize: '5vmin', padding: '1vmin 4vmin 1vmin 4vmin', margin: '3vmin', color: '#FFFFFF'}}>
+        <Box>
+          <RadioGroup row={true} onChange={updateChoice} value={choice.name} className='Datasets-Group' >
+            {
+              Object.keys(response).map(newChoice =>
+                <FormControlLabel className='Radio-Control-Label'
+                  key={newChoice}
+                  labelPlacement='top'
+                  value={newChoice}
+                  control={<Radio style={{color: '#FFFFFF'}} />}
+                  label={
+                    <Box component="div" className='Dataset-Label'>
+                        {newChoice}
+                      </Box>
+                  }
+                />
+              )
+            }
+          </RadioGroup>
+        </Box>
+        {/* <FormLabel className='Series-Label' style={{ fontSize: '5vmin', padding: '1vmin 4vmin 1vmin 4vmin', margin: '3vmin', color: '#FFFFFF'}}>
           {choice.name + " series"}
-        </FormLabel>
-        <Box display='flex' flexWrap='wrap' alignItems='center' justifyContent='center' height='auto'>
+        </FormLabel> */}
+        <Box row display='flex' flexWrap='wrap' alignItems='center' justifyContent='center' height='auto' width='100%'>
           <Box className='Chart-Group'>
             <Box display='flex' flexWrap='wrap' alignItems='center' justifyContent='center'>
-              <IconButton value={-1} name='previous' style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '4vw'}} onClick={decreaseIndex} ><ArrowCircleLeftIcon fontSize='5vw' /></IconButton>
+              <IconButton value={-1} name='previous' style={{color: '#FFFFFF80', fontSize: '4vw'}} onClick={decreaseIndex} ><ArrowCircleLeftIcon fontSize='5vw' /></IconButton>
               <BarChart display={false}
                 seriesData={response}
                 seriesChoice={choice.name}
@@ -117,7 +120,7 @@ function App(props) {
                 chartIndex={2}
                 colors={colors}
               />
-              <IconButton style={{color: 'rgba(255, 99, 132, 0.8)', fontSize: '4vw'}} onClick={increaseIndex}><ArrowCircleRightIcon fontSize='5vw' /></IconButton>
+              <IconButton style={{color: '#FFFFFF80', fontSize: '4vw'}} onClick={increaseIndex}><ArrowCircleRightIcon fontSize='5vw' /></IconButton>
             </Box>
             <Box className='Chart-Count'>
               <div hidden={index !== 0}><CircleIcon fontSize='2vw'/></div>
@@ -128,8 +131,8 @@ function App(props) {
               <div hidden={index === 2}><CircleOutlinedIcon fontSize='2vw'/></div>
             </Box>
           </Box>
-        </Box>
-        <Box className='Legend-Box' display='flex' flexWrap='wrap' alignItems='center' justifyContent='center' margin='3vmin'>
+        
+          <Box className='Legend-Box' display='flex' flexWrap='wrap' alignItems='center' justifyContent='center'>
           {legendData.map(set =>
             <Legend className='Legend'
               key={set}
@@ -137,7 +140,9 @@ function App(props) {
               maxValue={maxValue}
             />
           )}
+          </Box>
         </Box>
+
         <Box className='Sum-Group'>
           <FormLabel className='Sum-Label' style={{color: '#FFFFFF', fontSize: '3vmin', fontWeight: 'bold'}}>Member Count: {sumMembers}</FormLabel>
           <FormLabel className='Sum-Label' style={{color: '#FFFFFF', fontSize: '3vmin', fontWeight: 'bold'}}>Product Count: {sumProducts}</FormLabel>
