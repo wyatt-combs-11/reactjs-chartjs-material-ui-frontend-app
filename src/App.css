@@ -21,7 +21,7 @@
 }
 
 .App-header {
-  background: linear-gradient(var(--primary), #0267c6C0);
+  background: linear-gradient(var(--primary), #0267c6F0);
   min-height: 100vh;
   margin: auto;
   display: flex;
@@ -53,7 +53,8 @@
 }
 
 .Legend-Box {
-  background-color: var(--secondary);
+  width: 100%;
+  background-color: var(--primary);
   padding: 2vmin 0vmin 2vmin 0vmin;
   border-radius: 10px;
 }
@@ -70,13 +71,22 @@
 }
 
 .Datasets-Group {
-  top: 0;
-  margin: 3vmin;
-  padding: 10px;
+  height: 18vh;
+  width: 20vw;
+  padding: 6vh 1vmin 6vh 1vmin;
+  margin: 2vh;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  background-color: var(--secondary);
+  border-radius: 10px;
+}
+
+.Data-Select {
+  width: 40vw;
+  padding: 10px;
+  margin: 1vmin;
   background-color: var(--secondary);
   border-radius: 10px;
 }
@@ -107,6 +117,15 @@
 .Series-Label {
   background-color: var(--secondary);
   border-radius: 20px;
+  color: #FFFFFF;
+}
+
+.Legend-Title {
+  border-radius: 20px;
+  color: #FFFFFF;
+  width: 100%;
+  text-align: center;
+  font-size: 3vmin;
 }
 
 .Radio-Control-Label {
@@ -131,7 +150,15 @@
     width: 40vw;
   }
   .Legend-Label {
-    font-size: 2vmin;
+    font-size: 1.7vmin;
+  }
+  .Datasets-Group {
+    width: auto;
+  }
+  .Chart-Div {
+    position: relative;
+    right: 0;
+    margin: 0;
   }
 }
 
@@ -145,6 +172,6 @@
     width: 30vw;
   }
   .Legend-Label {
-    font-size: 16px;
+    font-size: 1.2vw;
   }
 }

@@ -1,12 +1,14 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import {RadioGroup, FormControlLabel, Radio, Box, FormLabel, IconButton} from '@mui/material';
+import {Box, IconButton, Button, Dialog, DialogActions, DialogContent, DialogTitle} from '@mui/material';
+import {FormControl, Select, MenuItem} from '@mui/material';
 import BarChart from './Charts/BarChart';
 import axios from 'axios';
 import PieChart from './Charts/PieChart';
 import DoughnutChart from './Charts/DoughnutChart';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import CloseIcon from '@mui/icons-material/Close';
 import CircleIcon from '@mui/icons-material/Circle';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import Legend from './Helper/Legend';
@@ -28,6 +30,7 @@ function App(props) {
   const [choice, setChoice] = useState({name:'Levels'})
   const [index, setIndex] = useState(0)
   const [colors] = useState(ColorGenerator.returnColors())
+  const [open, setOpen] = useState(false)
 
   // API Call
   useEffect(() => {
@@ -39,8 +42,10 @@ function App(props) {
 
   // Button, Radio Handlers
   const updateChoice = (event) => { setChoice({name: event.target.value})};
-  const increaseIndex = () => { setIndex((index + 1) % 3)}
-  const decreaseIndex = () => { setIndex(((index - 1) + 3) % 3)}
+  const increaseIndex = () => { setIndex((index + 1) % 3)};
+  const decreaseIndex = () => { setIndex(((index - 1) + 3) % 3)};
+  const handleClickOpen = () => { setOpen(true) };
+  const handleClose = () => { setOpen(false) };
 
   if (isLoading) {
     return (
@@ -74,28 +79,54 @@ function App(props) {
     <div className="App" >
       <header className="App-header" display='flex'>
         <Box>
-          <RadioGroup row={true} onChange={updateChoice} value={choice.name} className='Datasets-Group' >
-            {
-              Object.keys(response).map(newChoice =>
-                <FormControlLabel className='Radio-Control-Label'
-                  key={newChoice}
-                  labelPlacement='top'
-                  value={newChoice}
-                  control={<Radio style={{color: '#FFFFFF'}} />}
-                  label={
-                    <Box component="div" className='Dataset-Label'>
-                        {newChoice}
-                      </Box>
-                  }
-                />
-              )
-            }
-          </RadioGroup>
+          <Box width='auto' position='fixed' top={0} left={0} padding='1vmin'>
+              <label fullWidth className='Datasets-Group' style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold'}}>Member Count: {sumMembers}</label>
+              <label className='Datasets-Group' style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold'}}>Product Count: {sumProducts}</label>
+              <div className='Datasets-Group'>
+                <Button autoCapitalize={false} style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold', height: '100%', width: '100%'}} onClick={handleClickOpen}>
+                  See Legend
+                </Button>
+                <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth='100%' alignItems='center'
+                  PaperProps={{
+                    style: {
+                      backgroundColor: '#00000080',
+                      boxShadow: 'none',
+                    },
+                }}>
+                  <DialogTitle className='Legend-Title' fontWeight='bold'>Legend</DialogTitle>
+                  <DialogContent color='blue'>
+                    <Box className='Legend-Box' display='flex' flexWrap='wrap' alignItems='center' justifyContent='center'>
+                      {legendData.map(set =>
+                        <Legend className='Legend'
+                          key={set}
+                          legendData={set}
+                          maxValue={maxValue}
+                        />
+                      )}
+                    </Box>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button style={{color: '#FFFFFFC0', fontSize: '3vw'}} onClick={handleClose}><CloseIcon fontSize='2.5vw' /></Button>
+                  </DialogActions>
+                </Dialog>
+            </div>
+          </Box>
         </Box>
-        {/* <FormLabel className='Series-Label' style={{ fontSize: '5vmin', padding: '1vmin 4vmin 1vmin 4vmin', margin: '3vmin', color: '#FFFFFF'}}>
-          {choice.name + " series"}
-        </FormLabel> */}
-        <Box row display='flex' flexWrap='wrap' alignItems='center' justifyContent='center' height='auto' width='100%'>
+        <Box className='Chart-Div' alignItems='center' justifyContent='center' height='auto' marginLeft='25vw'>
+          <div width='20vw' >
+              <FormControl className='Data-Select'>
+                <Select variant='standard' disableUnderline={true} fullWidth={true} style={{color: 'white', fontSize: '3vw', fontWeight: 'bold', backgroundColor: '#00000020', borderRadius: '5px'}}
+                  value={choice.name}
+                  label="Data Set"
+                  onChange={updateChoice}
+                >
+                  {
+                    Object.keys(response).map(newChoice =>
+                      <MenuItem value={newChoice}>{newChoice}</MenuItem>
+                  )}
+                </Select>
+              </FormControl>
+            </div>
           <Box className='Chart-Group'>
             <Box display='flex' flexWrap='wrap' alignItems='center' justifyContent='center'>
               <IconButton value={-1} name='previous' style={{color: '#FFFFFF80', fontSize: '4vw'}} onClick={decreaseIndex} ><ArrowCircleLeftIcon fontSize='5vw' /></IconButton>
@@ -131,23 +162,7 @@ function App(props) {
               <div hidden={index === 2}><CircleOutlinedIcon fontSize='2vw'/></div>
             </Box>
           </Box>
-        
-          <Box className='Legend-Box' display='flex' flexWrap='wrap' alignItems='center' justifyContent='center'>
-          {legendData.map(set =>
-            <Legend className='Legend'
-              key={set}
-              legendData={set}
-              maxValue={maxValue}
-            />
-          )}
-          </Box>
         </Box>
-
-        <Box className='Sum-Group'>
-          <FormLabel className='Sum-Label' style={{color: '#FFFFFF', fontSize: '3vmin', fontWeight: 'bold'}}>Member Count: {sumMembers}</FormLabel>
-          <FormLabel className='Sum-Label' style={{color: '#FFFFFF', fontSize: '3vmin', fontWeight: 'bold'}}>Product Count: {sumProducts}</FormLabel>
-        </Box>
-        
       </header>
     </div>
   );
