@@ -90,8 +90,8 @@ function App(props) {
             </div>
             
               {/* <label className='Datasets-Group' style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold'}}>Product Count: {sumProducts}</label> */}
-              <div className='Datasets-Group'>
-                <Button autoCapitalize={false} style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold', height: '100%', width: '100%'}} onClick={handleClickOpen}>
+              <div className='Datasets-Group' style={{backgroundColor: '#152238A0'}}>
+                <Button style={{color: '#FFFFFF', fontSize: '4vmin', fontWeight: 'bold', width: '100%', height: '100%', textTransform: 'none', padding: '0px'}} onClick={handleClickOpen}>
                   See Legend
                 </Button>
                 <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth='100%' alignItems='center'
@@ -101,9 +101,9 @@ function App(props) {
                       boxShadow: 'none',
                     },
                 }}>
-                  <DialogTitle className='Legend-Title' fontWeight='bold'>Legend</DialogTitle>
-                  <DialogContent color='blue'>
-                    <Box className='Legend-Box' display='flex' flexWrap='wrap' alignItems='center' justifyContent='center'>
+                  <DialogTitle fullWidth className='Legend-Title' fontWeight='bold'>Legend</DialogTitle>
+                  <DialogContent >
+                    <Box className='Legend-Box' display='flex' flexWrap='wrap' alignItems='center' justifyContent='center' overflow='hidden'>
                       {legendData.map(set =>
                         <Legend className='Legend'
                           key={set}
