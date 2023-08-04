@@ -79,9 +79,17 @@ function App(props) {
     <div className="App" >
       <header className="App-header" display='flex'>
         <Box>
-          <Box width='auto' position='fixed' top={0} left={0} padding='1vmin'>
-              <label fullWidth className='Datasets-Group' style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold'}}>Member Count: {sumMembers}</label>
-              <label className='Datasets-Group' style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold'}}>Product Count: {sumProducts}</label>
+          <Box className='Panel' width='auto' position='fixed' top={0} left={0} padding='1vmin'>
+            <div className='Datasets-Group' style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold'}}>
+              <label className='Sum-Label'>Member Count</label>
+              <label fullWidth style={{fontSize: '5vw'}} >{sumMembers}</label>
+            </div>
+            <div className='Datasets-Group' style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold'}}>
+              <label className='Sum-Label'>Product Count</label>
+              <label fullWidth style={{fontSize: '5vw'}} >{sumProducts}</label>
+            </div>
+            
+              {/* <label className='Datasets-Group' style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold'}}>Product Count: {sumProducts}</label> */}
               <div className='Datasets-Group'>
                 <Button autoCapitalize={false} style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold', height: '100%', width: '100%'}} onClick={handleClickOpen}>
                   See Legend
@@ -112,17 +120,18 @@ function App(props) {
             </div>
           </Box>
         </Box>
-        <Box className='Chart-Div' alignItems='center' justifyContent='center' height='auto' marginLeft='25vw'>
+        <Box className='Chart-Div' alignItems='center' justifyContent='center' height='auto'>
           <div width='20vw' >
               <FormControl className='Data-Select'>
                 <Select variant='standard' disableUnderline={true} fullWidth={true} style={{color: 'white', fontSize: '3vw', fontWeight: 'bold', backgroundColor: '#00000020', borderRadius: '5px'}}
+                  sx={{ '& .MuiSvgIcon-root': { color: 'white' }}}
                   value={choice.name}
                   label="Data Set"
                   onChange={updateChoice}
                 >
                   {
                     Object.keys(response).map(newChoice =>
-                      <MenuItem value={newChoice}>{newChoice}</MenuItem>
+                      <MenuItem value={newChoice}>{newChoice.split(/(?=[A-Z])/).join(' ')}</MenuItem>
                   )}
                 </Select>
               </FormControl>

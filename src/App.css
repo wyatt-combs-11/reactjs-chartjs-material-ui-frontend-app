@@ -1,5 +1,5 @@
 :root {
-  --secondary: #0c234c60;
+  --secondary: #0c234c50;
   --primary: #0267c6e2;
   --white: #FFFFFF;
 }
@@ -45,6 +45,10 @@
   }
 }
 
+.Panel {
+  background-color: #0c234c20;
+}
+
 .Chart-Group {
   background-color: var(--secondary);
   border-radius: 10px;
@@ -61,7 +65,7 @@
 
 .Legend {
   display: flex;
-  padding: 1vmin 0vmin 1vmin 0vmin;
+  padding: 0;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -111,7 +115,13 @@
 }
 
 .Sum-Label {
-  margin: 1.5vmin;
+  margin-top: -50px;
+  width: 100%;
+  background-color: #FFFFFF80;
+  color: black;
+  font-size: 2.8vmin;
+  padding: 1vmin;
+  border-radius: 5px;
 }
 
 .Series-Label {
@@ -153,12 +163,23 @@
     font-size: 1.7vmin;
   }
   .Datasets-Group {
-    width: auto;
+    width: 24.6vw;
+    padding: 0 2vw 0 2vw;
+    margin: 2vw;
   }
   .Chart-Div {
     position: relative;
     right: 0;
-    margin: 0;
+    margin-top: 15vh;
+  }
+  .Panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .Sum-Label {
+    margin-top: -5px;
   }
 }
 
@@ -173,5 +194,8 @@
   }
   .Legend-Label {
     font-size: 1.2vw;
+  }
+  .Chart-Div {
+    margin-left: 25vw;
   }
 }
