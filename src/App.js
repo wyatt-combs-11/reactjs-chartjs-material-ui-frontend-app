@@ -34,7 +34,7 @@ function App(props) {
 
   // API Call
   useEffect(() => {
-    axios.get("https://3pcdm3ekm2.us-east-2.awsapprunner.com/getData").then((response) => {
+    axios.get(process.env.REACT_APP_BACKEND_ENDPOINT).then((response) => {
       setResponse(response.data.data);
       setLoading(false)
     });
@@ -82,11 +82,11 @@ function App(props) {
           <Box className='Panel' width='auto' position='fixed' top={0} left={0} padding='1vmin'>
             <div className='Datasets-Group' style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold'}}>
               <label className='Sum-Label'>Member Count</label>
-              <label fullWidth style={{fontSize: '5vw'}} >{sumMembers}</label>
+              <label style={{fontSize: '5vw'}} >{sumMembers}</label>
             </div>
             <div className='Datasets-Group' style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold'}}>
               <label className='Sum-Label'>Product Count</label>
-              <label fullWidth style={{fontSize: '5vw'}} >{sumProducts}</label>
+              <label style={{fontSize: '5vw'}} >{sumProducts}</label>
             </div>
             
               {/* <label className='Datasets-Group' style={{color: '#FFFFFF', fontSize: '2vmin', fontWeight: 'bold'}}>Product Count: {sumProducts}</label> */}
