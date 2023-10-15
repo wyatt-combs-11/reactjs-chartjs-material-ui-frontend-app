@@ -14,9 +14,9 @@ export default class LegendDataUtils {
     return [series, maxValue]
   }
 
-  static sumData (data) {
+  static sumData (data, seriesData) {
     let sumMembers = 0
-    data.Levels.YData.map(member => {
+    seriesData.YData.map(member => {
       sumMembers += member
       return 0
     })

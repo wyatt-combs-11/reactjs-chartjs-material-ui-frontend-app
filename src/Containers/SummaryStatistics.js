@@ -10,7 +10,7 @@ export function SummaryStatistics ({ sumMembers, sumProducts }) {
           fontWeight: 'bold'
         }}
       >
-        <label className='Sum-Label'>Member Count</label>
+        <label className='Sum-Label'>Sum of Y-Data</label>
         <label
           style={{
             fontSize: '5vw'

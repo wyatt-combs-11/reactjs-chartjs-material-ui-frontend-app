@@ -13,11 +13,12 @@ function App (props) {
   // set app states
   const [isLoading, setLoading] = useState(true) // Loading state
   const [response, setResponse] = useState(false)
-  const [choice, setChoice] = useState('Levels')
+  const [choice, setChoice] = useState('OriginationChannel')
   const [colors] = useState(ColorGenerator.returnColors())
 
   // API Call
   useEffect(() => {
+    document.title = 'Mock Data Dashboard'
     axios.get(process.env.REACT_APP_BACKEND_ENDPOINT).then(response => {
       setResponse(response.data.data)
       setLoading(false)
@@ -38,7 +39,10 @@ function App (props) {
   const [series, maxValue] = LegendDataUtils.sortLegendData(seriesData, colors)
 
   // Make three equal length arrays (or close to) for three column legend
-  const [sumMembers, sumProducts] = LegendDataUtils.sumData(response)
+  const [sumMembers, sumProducts] = LegendDataUtils.sumData(
+    response,
+    seriesData
+  )
   const size = Math.ceil(series.length / 3)
   const legendData = Array.from({ length: 3 }, (v, i) =>
     series.slice(i * size, i * size + size)
