@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Mock Data Dashboard
+ * [Project Description](#project-description)
+ * [Project Architecture](#project-architecture)
+ * [MERN Stack Diagram](#mern-stack-diagram)
+ * [Features](#features)
+ * [Installation and Usage](#installation-and-usage)
+ * [Contributors](#contributors)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Project Description
+This project is a self-exploration of JavaScript with a focus on a final project doing simple data visualization from a sample of mock data. I taught myself JS from scratch (just about) for this project and utilized a framework and previous simple web development skills in html/css. The project is also supported by a backend hosted on AWS and a MongoDB database that stores the data.
 
-In the project directory, you can run:
+## Project Architecture
+- ReactJS frontend, hosted on Vercel [here](https://reactjs-chartjs-material-ui-frontend-app.vercel.app/)
+- Supported features and styling using ChartJS, MaterialUI, CSS stylesheets, and credentials for AWS service layer endpoint
+- A service layer with NodeJS and ExpressJS that connects to the data layer (database)
+- Service layer maintained on AWS Apprunner with "basic-user" credentials for database access
+- MongoDB database with mock data that includes multiple series for data visualization
+- Admin and user roles for access; user role is read-only for all tables
+- All layers are hosted/deployed independently of each other
 
-### `npm start`
+## MERN Stack Diagram
+<img alt="MERN Stack" src="MERN-Architecture.png" width="60%" title="MERN Stack">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
+- Bar, pie, and doughnut charts for data series in a carousel view
+- Loading screen (just a "p" tag but prevents errors) while waiting async data fetch
+- Dropdown menu for choice of data series
+- Responsive charts and "analytics" for respectives series
+- Dynamic styling compatible for sizes ranging from computer to phones
+- In-depth pop-up legend, sorted by y-values, with progress bars to better visualize difference in data (click "See Legend")
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation and Usage
 
-### `npm test`
+To install and run this project locally, start by cloning the project (or forking):
+```
+git clone https://github.com/wyatt-combs-11/reactjs-chartjs-material-ui-frontend-app.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Once the project is downloaded, the necessary modules need to be installed:
+```
+npm install
+```
 
-### `npm run build`
+To run the project after it is set up:
+```
+npm start
+```
+> Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page will reload when you make changes. You may also see any lint errors in the console.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run tests for the project (not created yet):
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm test
+```
+> Launches the test runner in the interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Contributors
+- Wyatt Combs
